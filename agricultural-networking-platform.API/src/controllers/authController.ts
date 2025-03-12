@@ -11,51 +11,53 @@ import { generateOTP, sendOTP } from "../services/otpService";
 class AuthController {
 
   // User Login
-async login(req: Request, res: Response): Promise<void> {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      res.status(400).json({ message: "Email and password are required" });
-      return;
+  async login(req: Request, res: Response): Promise<void> {
+    try {
+      const { email, password } = req.body;
+  
+      if (!email || !password) {
+        res.status(400).json({ message: "Email and password are required" });
+        return;
+      }
+  
+      // Find the user
+      const user = await User.findOne({ email });
+      if (!user) {
+        res.status(404).json({ message: "User not found" });
+        return;
+      }
+  
+      // Check if the password matches
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        res.status(400).json({ message: "Invalid password" });
+        return;
+      }
+  
+      // Check if the user is verified
+      if (!user.isVerified) {
+        res.status(400).json({ message: "User is not verified. Please verify your email first." });
+        return;
+      }
+  
+      // Generate access and refresh tokens
+      const accessToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "10m" });
+      const refreshToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "24h" });
+  
+      // **Save userId in res.locals for audit logging**
+      res.locals.userId = user._id;
+  
+      res.json({
+        message: "Login successful.",
+        accessToken,
+        refreshToken,
+        user: { id: user._id, email: user.email },
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error during login", error });
     }
-
-    
-
-    // Find the user
-    const user = await User.findOne({ email });
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
-    }
-
-    // Check if the password matches
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      res.status(400).json({ message: "Invalid password" });
-      return;
-    }
-
-    // Check if the user is verified
-    if (!user.isVerified) {
-      res.status(400).json({ message: "User is not verified. Please verify your email first." });
-      return;
-    }
-
-    // Generate access and refresh tokens
-    const accessToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "10m" });
-    const refreshToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "24h" });
-
-    res.json({
-      message: "Login successful.",
-      accessToken,
-      refreshToken,
-      user: { id: user._id, email: user.email },
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Error during login", error });
   }
-}
+  
   //User Logout
    async logout(req: Request, res: Response): Promise<void> {
     try {
@@ -189,9 +191,41 @@ async login(req: Request, res: Response): Promise<void> {
     }
 
     res.json({ message: "OTP resent successfully" });
-
-    
   }
+
+    // Refresh Access Token
+    async refreshToken(req: Request, res: Response): Promise<void> {
+      try {
+        const { refreshToken } = req.body;
+  
+        if (!refreshToken) {
+          res.status(400).json({ message: "Refresh token is required" });
+          return;
+        }
+  
+        // Verify refresh token
+        jwt.verify(refreshToken, JWT_SECRET, async (err: any, decoded: any) => {
+          if (err) {
+            res.status(403).json({ message: "Invalid or expired refresh token" });
+            return;
+          }
+  
+          // Find user
+          const user = await User.findById(decoded.userId);
+          if (!user) {
+            res.status(404).json({ message: "User not found" });
+            return;
+          }
+  
+          // Generate new access token
+          const accessToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "10m" });
+  
+          res.json({ accessToken });
+        });
+      } catch (error) {
+        res.status(500).json({ message: "Error refreshing token", error });
+      }
+    }  
 }
 
 export default new AuthController();

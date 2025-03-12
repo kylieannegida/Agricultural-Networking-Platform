@@ -43,7 +43,7 @@ export function generateOTP(): string {
 export async function sendOTP(email: string, otp: string) {
   try {
     const mailOptions = {
-      from: `Your OTP Code<${process.env.EMAIL_USER}>`,
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Your OTP Code",
       text: `Your OTP code is: ${otp}. It will expire in 5 minutes.`,

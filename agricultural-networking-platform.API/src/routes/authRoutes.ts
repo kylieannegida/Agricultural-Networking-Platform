@@ -1,6 +1,7 @@
 import { Router } from "express";
 import AuthController from "../controllers/authController";
 import authController from "../controllers/authController";
+import auditTrailMiddleware from "../middleware/auditTrailMiddleware";
 
 const router = Router();
 
@@ -11,10 +12,10 @@ router.post("/register", AuthController.register);
 router.post("/verify-otp", AuthController.verifyOTPHandler);
 
 // User login route
-router.post("/login", AuthController.login);
+router.post("/login",auditTrailMiddleware, AuthController.login);
 
 // Optionally, you can add the refresh token route
-//router.post("/refresh-token", AuthController.refreshToken);
+router.post("/refresh-token", AuthController.refreshToken);
 
 // Resend OTP route
 router.post("/resend-otp", authController.resendOTPHandler);
