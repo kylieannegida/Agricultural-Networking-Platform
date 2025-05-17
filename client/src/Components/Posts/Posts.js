@@ -14,6 +14,7 @@ const Posts = () => {
 
 
   useEffect(() => {
+    console.log(user);
     dispatch(getTimelinePosts(user._id))
   }, [])
 

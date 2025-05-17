@@ -5,3 +5,7 @@
     align-items: center;
     overflow: auto;
 }
+
+button {
+    background:  linear-gradient(98.63deg, #00c300 0%, #78ff78 100%);;
+}

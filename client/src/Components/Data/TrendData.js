@@ -1,22 +1,22 @@
 export const TrendData = [
     {
-        name: "ChatGPT",
+        name: "Organic farming",
         shares: 100,
     },
     {
-        name: "Avengers",
+        name: "Fertilizers",
         shares: 80,
     },
     {
-        name: "AI technology info",
+        name: "Webinars",
         shares: 70,
     },
     {
-        name: "Cristiano Ronaldo",
+        name: "Agriculture",
         shares: 90,
     },
     {
-        name: "Elon Musk",
+        name: "Bongabong farmers",
         shares: 50,
     }
 

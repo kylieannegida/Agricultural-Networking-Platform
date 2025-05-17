@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(98.63deg, #6674cc 0%, #b578ff 100%);
+    background: linear-gradient(98.63deg, #00c300 0%, #78ff78 100%);
     border-radius: 5px;
     padding: 4px;
     color: white;
@@ -28,4 +28,8 @@
 
 .s-icon:hover {
     cursor: pointer;
+}
+
+.logo-btn {
+    width: 50px;
 }
