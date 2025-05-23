@@ -1,0 +1,93 @@
+.PostShare {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--cardColor);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.PostShare > img {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.PostShare > div {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 1rem;
+}
+
+/* New: input and button side-by-side */
+.inputShareRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.inputShareRow input {
+    flex-grow: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    color: #333;
+    outline: none;
+}
+
+.ps-button {
+    padding: 12px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    background: linear-gradient(98.63deg, #1DB233 0%, #78ff78 100%);
+    cursor: pointer;
+}
+
+
+.ps-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Optional: You can remove this since we removed extra options */
+/* .postOptions {
+    display: flex;
+    justify-content: space-around;
+} */
+
+/* .option {
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.option:hover {
+    cursor: pointer;
+} */
+
+.previewImage {
+    position: relative;
+}
+
+.previewImage > svg {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+}
+
+.previewImage > img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}

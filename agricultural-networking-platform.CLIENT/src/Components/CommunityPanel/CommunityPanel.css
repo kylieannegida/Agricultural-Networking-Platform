@@ -1,0 +1,62 @@
+.community-panel {
+    background: #f9fff6;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+    margin-top: 1rem;
+    border: 1px solid #cde9bc;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #2e7d32;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.community-panel h2 {
+    margin-bottom: 1rem;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.community-card {
+    border-bottom: 1px solid #e0f2e9;
+    padding: 0.75rem 0;
+}
+
+.community-card h3 {
+    margin: 0;
+    color: #33691e;
+}
+
+.community-card p {
+    font-size: 0.9rem;
+    color: #4e6641;
+    margin: 0.3rem 0;
+}
+
+.community-card span {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: #7b8f77;
+}
+
+.join-btn {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.join-btn:hover {
+    background-color: #4caf50;
+}
