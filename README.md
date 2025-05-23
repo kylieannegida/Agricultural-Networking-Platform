@@ -1,3 +1,49 @@
+# EcoFarm Circle
+
+## Overview
+
+EcoFarm Circle is an agricultural networking platform designed to connect eco-friendly farmers, researchers, and enthusiasts worldwide. It aims to foster collaboration, knowledge sharing, and community building around sustainable farming practices.
+
+This platform offers tools for:
+
+- Creating and managing communities
+- Sharing posts, news, and farming tips
+- Engaging with content through likes and comments
+- Real-time messaging and user interactions
+- Event organization and participation
+
+---
+
+## Features
+
+- **User Authentication:** Secure registration and login with JWT
+- **Communities:** Create, join, and manage farming communities
+- **Posts:** Share and interact with eco-farming content
+- **Likes and Comments:** Engage with posts and discussions
+- **Real-time Chat:** Messaging between users (planned)
+- **Event Management:** Organize and participate in eco-farming events (planned)
+- **Responsive UI:** Works seamlessly across devices
+
+---
+
+## Tech Stack
+
+- **Frontend:** React (JavaScript), Redux for state management, CSS for styling
+- **Backend:** Node.js with Express, MongoDB for database, JWT for authentication
+- **API:** RESTful endpoints for CRUD operations on users, communities, posts, likes, and chats
+- **Real-time:** Socket.IO or similar for chat and live notifications (planned)
+- **Deployment:** Render, Vercel
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm
+- MongoDB instance (local or cloud)
+
 ## 🛠️ Troubleshooting Guide: Address Common Issues and Solutions
 
 This guide provides solutions to common problems encountered when running or developing the **EcoFarm Circle** application.
